@@ -9,5 +9,5 @@ for PROJECT in $(\
   --format="value(projectId)" )
 do
   gcloud projects get-iam-policy $PROJECT --format="json" | \
-  awk -v awkvarproject="$PROJECT" awkvaremail="$EMAIL" '{if ($0 ~ /awkvaremail/) {print awkvarproject}}'
+  awk -v project="$PROJECT" -v email="$EMAIL" '$0 ~ email {print project}'
 done
